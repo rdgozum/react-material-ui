@@ -11,26 +11,28 @@ const styles = {
   }
 }
 
-function Main({ exercises }) {
+function Main({ exercises, category }) {
   return (
     <Grid container>
        <Grid item sm>
          <Paper style={ styles.Paper }>
           {
             exercises.map(([group, exercises]) =>
-            <Fragment>
-              <Typography variant="h6" style={{textTransform: 'Capitalize'}}>
-                { group }
-              </Typography>
-              <List component="ul">
-                {
-                  exercises.map(({ title }) =>
-                  <ListItem button>
-                      <ListItemText primary={ title } />
-                  </ListItem>
-                )}
-              </List>
-            </Fragment>
+            !category || category === group
+            ? <Fragment>
+                <Typography variant="h6" style={{textTransform: 'Capitalize'}}>
+                  { group }
+                </Typography>
+                <List component="ul">
+                  {
+                    exercises.map(({ title }) =>
+                    <ListItem button>
+                        <ListItemText primary={ title } />
+                    </ListItem>
+                  )}
+                </List>
+              </Fragment>
+            : null
           )}
          </Paper>
        </Grid>

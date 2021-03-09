@@ -32,11 +32,12 @@ export default class extends Component {
   render() {
     const exercises = this.getExercisesByMuscles(),
       { category } = this.state
+
     return (
       <Fragment>
         <Header />
 
-        <Main exercises={ exercises }/>
+        <Main exercises={ exercises } category={ category }/>
 
         <Footer muscles={ muscles } category={ category } onSelect={ this.handleCategorySelected }/>
       </Fragment>
