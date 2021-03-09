@@ -11,7 +11,16 @@ const styles = {
   }
 }
 
-function Main({ exercises, category }) {
+function Main({
+  category,
+  exercises,
+  onSelect,
+  exercise: {
+    id,
+    title = 'Welcome!',
+    description = 'Please select an exercise from the list on the left.'
+  }
+}) {
   return (
     <Grid container>
        <Grid item sm>
@@ -19,14 +28,18 @@ function Main({ exercises, category }) {
           {
             exercises.map(([group, exercises]) =>
             !category || category === group
-            ? <Fragment>
+            ? <Fragment key={group}>
                 <Typography variant="h6" style={{textTransform: 'Capitalize'}}>
                   { group }
                 </Typography>
                 <List component="ul">
                   {
-                    exercises.map(({ title }) =>
-                    <ListItem button>
+                    exercises.map(({ id, title }) =>
+                    <ListItem
+                      key={id}
+                      button
+                      onClick={() => onSelect(id)}
+                    >
                         <ListItemText primary={ title } />
                     </ListItem>
                   )}
@@ -39,10 +52,10 @@ function Main({ exercises, category }) {
        <Grid item sm>
          <Paper style={ styles.Paper }>
            <Typography variant="h4">
-             Welcome!
+             { title }
            </Typography>
            <Typography variant="body1" style={{marginTop: 20}}>
-             Please select an exercise from the list on the left.
+             { description }
            </Typography>
          </Paper>
        </Grid>
