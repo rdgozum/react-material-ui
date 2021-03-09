@@ -23,6 +23,12 @@ export default class extends Component {
     )
   }
 
+  handleCategorySelected = category => {
+    this.setState({
+        category
+    })
+  }
+
   render() {
     const exercises = this.getExercisesByMuscles(),
       { category } = this.state
@@ -32,7 +38,7 @@ export default class extends Component {
 
         <Main exercises={ exercises }/>
 
-        <Footer muscles={ muscles } category={ category }/>
+        <Footer muscles={ muscles } category={ category } onSelect={ this.handleCategorySelected }/>
       </Fragment>
     )
   }
