@@ -39,6 +39,8 @@ export default class extends Component {
     const exercises = this.getExercisesByMuscles(),
       { category, exercise } = this.state
 
+    console.log(this.state)
+
     return (
       <Fragment>
         <Header />
